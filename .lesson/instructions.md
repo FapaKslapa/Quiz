@@ -11,8 +11,8 @@ Vediamo in dettaglio l'implementazione richiesta.
 
 ## LATO CLIENT
 Lato client è presente una schermata principale contenente l'elenco degli utenti che hanno risposto al quiz col loro punteggio. Questa classifica è richiesta dal client al server mediante il servizio **/ratings**.
-E' presente un pulsante che permette di fare un nuovo quiz. Alla sua pressione si apre una modale che mostra tutte le domande con le relative caselle di selezione a risposta multipla. La modale ha un titolo col nome del questionario. Le domande sono scaricate dal server mediante il servizio **/questions**.
-E' possibile rispondere con una sola risposta. E' anche prevista una casella dove inserire il proprio nome ed un pulsante di invio.
+E' presente un pulsante che permette di fare un nuovo quiz. Alla sua pressione si apre una modale che chiede il nome utente, e dopo l'inserimento di questo chiude la modale di richiesta del nome e ne apre una nuova che mostra tutte le domande con le relative caselle di selezione a risposta multipla. La modale ha un titolo col nome del questionario. Le domande sono scaricate dal server mediante il servizio **/questions**.
+E' possibile rispondere con una sola risposta. 
 Le domande vanno presentate in modo casuale.
 E' presente un timer che fa chiudere la modale (ed inviare le risposte fatte finora) alla scadenza del tempo.
 

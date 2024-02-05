@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html data-bs-theme="dark" lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Accedi</title>
+    <title>Quiz F1</title>
     <link
       href="https://fonts.googleapis.com/css?family=Lexend"
       rel="stylesheet"
@@ -28,8 +28,120 @@
 
   <body>
     <div class="container">
-      <h1>Benvenuto nei quiz</h1>
-      <div class="row"></div>
+      <div class="row mt-5">
+        <nav
+          class="navbar sticky-top navbar-expand-lg bg-body-tertiary rounded-3"
+        >
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"><h4>Benvenuto nei quiz</h4></a>
+
+            <div class="d-flex" role="search">
+              <button
+                type="button"
+                class="btn btn-outline-light d-inline-flex p-1rounded-3"
+                data-bs-toggle="modal"
+                data-bs-target="#modalName"
+              >
+                Inizia test
+              </button>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="row mt-5">
+        <div class="card card-body">
+          <h3 class="card-title">Classifica</h3>
+        </div>
+      </div>
     </div>
+
+    <div
+      class="modal fade"
+      id="modalName"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title">Compila i campi per iniziare</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <form onsubmit="return false">
+            <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      placeholder="Username"
+                      required
+                    />
+                    <label for="floatingPassword"
+                      >Inserisci il tuo username</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button
+                type="submit"
+                class="btn btn-outline-success"
+                id="inviaUser"
+              >
+                Open second modal
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalQuiz"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h1 class="modal-title fs-5" id="modalQuizTitle">
+              Rispondi alle domande e poi premi il pulsante invio
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="modalQuizBody">
+            <ul id="domande"></ul>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-outline-success">
+              Invia modulo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./script.js"></script>
   </body>
 </html>
