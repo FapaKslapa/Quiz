@@ -21,15 +21,3 @@ const getQuestion = () => {
       });
   });
 };
-
-let tempo = 60; // Inserisci il tempo in secondi
-
-const countdown = setInterval(() => {
-  document.getElementById('modalQuizTitle').innerText = tempo;
-  tempo--;
-
-  if (tempo < 0) {
-    clearInterval(countdown);
-    document.getElementById('modalQuizTitle').innerText = 'Tempo esaurito!';
-  }
-}, 1000);
