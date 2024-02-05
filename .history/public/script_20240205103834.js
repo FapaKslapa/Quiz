@@ -2,8 +2,6 @@ const modalQuiz = new bootstrap.Modal("#modalQuiz");
 const modalName = new bootstrap.Modal("#modalName");
 const inviaUser = document.getElementById("inviaUser");
 const username = document.getElementById("username");
-let tempo = 60; // Inserisci il tempo in secondi
-let countdown;
 inviaUser.onclick = () => {
   if (username.value) {
     modalName.hide();
@@ -33,3 +31,14 @@ const getQuestion = () => {
   });
 };
 
+let tempo = 60; // Inserisci il tempo in secondi
+
+const countdown = setInterval(() => {
+  document.getElementById('modalQuizTitle').innerText = tempo;
+  tempo--;
+
+  if (tempo < 0) {
+    clearInterval(countdown);
+    document.getElementById('modalQuizTitle').innerText = 'Tempo esaurito!';
+  }
+}, 1000);
