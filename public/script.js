@@ -2,22 +2,28 @@ const modalQuiz = new bootstrap.Modal("#modalQuiz");
 const modalName = new bootstrap.Modal("#modalName");
 const inviaUser = document.getElementById("inviaUser");
 const username = document.getElementById("username");
-
-let tempo = 60; // Inserisci il tempo in secondi
+let tempo = 0; // Inserisci il tempo in secondi
 let countdown;
+
+const template = `<li>
+%DOMANDA
+</li>`
 inviaUser.onclick = () => {
   if (username.value) {
     modalName.hide();
     getQuestion().then((data) => {
       modalQuiz.show();
+      console.log(data.questions[0]);
       tempo = data.timer;
       countdown = setInterval(() => {
         if (tempo > 10) {
           document.getElementById("tempoRimasto").innerHTML =
-            "<p>" + tempo + "</p>";
+            tempo + '<span class="material-symbols-rounded"> schedule </span>';
           tempo--;
         } else if (tempo <= 10) {
-          '<p class="text-danger">' + tempo + "</p>";
+          document.getElementById("tempoRimasto").innerHTML =
+            tempo +
+            '<span class="material-symbols-rounded"> schedule </span></p>';
           tempo--;
         }
         if (tempo < 0) {
@@ -41,4 +47,5 @@ const getQuestion = () => {
   });
 };
 
-const renderQuestion = (array) => {};
+const renderQuestion = (array) => {
+};

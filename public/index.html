@@ -123,7 +123,6 @@
           <div class="modal-header border-0">
             <h1 class="modal-title fs-5" id="modalQuizTitle">
               Rispondi alle domande e poi premi il pulsante invio
-              <span id="tempoRimasto"></span>
             </h1>
             <button
               type="button"
@@ -136,9 +135,12 @@
             <ul id="domande"></ul>
           </div>
           <div class="modal-footer border-0">
-            <button type="button" class="btn btn-outline-success">
-              Invia modulo
-            </button>
+            <div class="d-inline-flex p-1 rounded-3">
+              <button class="btn btn-light d-inline-flex p-1 rounded-3" id="tempoRimasto" disabled></div>
+              <button type="button" class="btn btn-outline-success rounded-3">
+                Invia modulo
+              </button>
+            </div>
           </div>
         </div>
       </div>
