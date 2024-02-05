@@ -1,0 +1,186 @@
+{
+  "title": "Domande di Formula 1",
+  "timer": 180,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Chi è il pilota con il maggior numero di titoli mondiali di Formula 1?",
+      "answers": [
+        "Michael Schumacher",
+        "Lewis Hamilton",
+        "Juan Manuel Fangio",
+        "Sebastian Vettel"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Quale team ha vinto più campionati costruttori di Formula 1?",
+      "answers": ["Ferrari", "Mercedes", "McLaren", "Williams"]
+    },
+    {
+      "id": 3,
+      "question": "Qual è il circuito più lungo del calendario di Formula 1?",
+      "answers": [
+        "Circuito di Spa-Francorchamps",
+        "Circuito di Silverstone",
+        "Circuito di Suzuka",
+        "Circuito di Monza"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Qual è la squadra di Formula 1 più antica ancora in attività?",
+      "answers": ["Ferrari", "McLaren", "Williams", "Alfa Romeo Racing"]
+    },
+    {
+      "id": 5,
+      "question": "Chi è il più giovane pilota a vincere un Gran Premio di Formula 1?",
+      "answers": [
+        "Max Verstappen",
+        "Fernando Alonso",
+        "Sebastian Vettel",
+        "Lewis Hamilton"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Qual è il tracciato più veloce in termini di media oraria nel calendario di Formula 1?",
+      "answers": [
+        "Circuito di Monza",
+        "Circuito di Baku",
+        "Circuito di Spa-Francorchamps",
+        "Circuito di Silverstone"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Qual è stata la prima gara di Formula 1?",
+      "answers": [
+        "Gran Premio di Gran Bretagna",
+        "Gran Premio di Monaco",
+        "Gran Premio d'Italia",
+        "Gran Premio di Francia"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Chi è il pilota con il maggior numero di pole position in Formula 1?",
+      "answers": [
+        "Lewis Hamilton",
+        "Ayrton Senna",
+        "Michael Schumacher",
+        "Sebastian Vettel"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Quale pilota ha vinto il maggior numero di Gran Premi di Formula 1?",
+      "answers": [
+        "Lewis Hamilton",
+        "Michael Schumacher",
+        "Sebastian Vettel",
+        "Alain Prost"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Chi è stato il primo campione del mondo di Formula 1?",
+      "answers": [
+        "Giuseppe Farina",
+        "Juan Manuel Fangio",
+        "Stirling Moss",
+        "Alberto Ascari"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Qual è stato il più lungo Gran Premio di Formula 1 per durata?",
+      "answers": [
+        "Gran Premio del Canada 2011",
+        "Gran Premio d'Austria 2021",
+        "Gran Premio di Gran Bretagna 2020",
+        "Gran Premio del Brasile 2016"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Quanti sono i Gran Premi nel calendario di Formula 1?",
+      "answers": ["Circa 20-23", "Circa 18-20", "Circa 25-28", "Circa 15-18"]
+    },
+    {
+      "id": 13,
+      "question": "Qual è il pilota con il maggior numero di pole position consecutive in Formula 1?",
+      "answers": [
+        "Ayrton Senna",
+        "Lewis Hamilton",
+        "Sebastian Vettel",
+        "Michael Schumacher"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Chi è stato il più giovane pilota a esordire in Formula 1?",
+      "answers": [
+        "Max Verstappen",
+        "Jaime Alguersuari",
+        "Lance Stroll",
+        "Sebastian Vettel"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Qual è il circuito con il maggior numero di curve nel calendario di Formula 1?",
+      "answers": [
+        "Circuito di Yas Marina",
+        "Circuito di Monaco",
+        "Circuito di Singapore",
+        "Circuito di Interlagos"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Chi ha vinto il primo Gran Premio di Formula 1?",
+      "answers": [
+        "Giuseppe Farina",
+        "Juan Manuel Fangio",
+        "Stirling Moss",
+        "Alberto Ascari"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Qual è il team di Formula 1 con il maggior numero di vittorie in una singola stagione?",
+      "answers": ["McLaren", "Ferrari", "Mercedes", "Williams"]
+    },
+    {
+      "id": 18,
+      "question": "Chi è il più giovane vincitore di un campionato mondiale di Formula 1?",
+      "answers": [
+        "Sebastian Vettel",
+        "Lewis Hamilton",
+        "Michael Schumacher",
+        "Fernando Alonso"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Qual è il pilota con il maggior numero di giri veloci in una singola stagione di Formula 1?",
+      "answers": [
+        "Michael Schumacher",
+        "Lewis Hamilton",
+        "Sebastian Vettel",
+        "Ayrton Senna"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Quale è la gara di Formula 1 con il maggior numero di edizioni disputate?",
+      "answers": [
+        "Gran Premio di Monaco",
+        "Gran Premio d'Italia",
+        "Gran Premio del Belgio",
+        "Gran Premio di Gran Bretagna"
+      ]
+    }
+  ]
+}
