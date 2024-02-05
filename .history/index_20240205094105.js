@@ -17,9 +17,7 @@ server.listen(80, () => {
   console.log("- server running");
 });
 
-app.get("/scores", (req, res) => {
-  res.send(scores);
-});
+app.get("/question", (req, res) => {});
 
 app.get("/question", (req, res) => {
   fs.readFile("question.json", "utf8", (err, data) => {

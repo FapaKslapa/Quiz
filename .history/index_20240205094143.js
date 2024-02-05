@@ -34,6 +34,7 @@ app.get("/question", (req, res) => {
   });
 });
 
+
 app.post("/answer", (req, res) => {
   const { username, timestamp, answers } = req.body;
 
@@ -72,3 +73,5 @@ app.post("/answer", (req, res) => {
     res.send(`Il punteggio totale di ${username} è ${totalScore}`);
   });
 });
+
+

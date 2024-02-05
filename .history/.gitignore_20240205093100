@@ -128,8 +128,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-.replit
-packag-lock.json
-replit.nix
-.lession
-node_modules

@@ -1,0 +1,31 @@
+body {
+    font-family: "Lexend";
+  }
+  
+  h1 {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 4.7em;
+  }
+  
+  h2 {
+    font-family: 'Lexend', sans-serif;
+    font-weight: bold;
+  }
+  
+  h3 {
+    font-family: 'Lexend';
+    font-size: 1.3em;
+  }
+  
+  #logo {
+    filter: invert(33%) sepia(74%) saturate(3191%) hue-rotate(206deg) brightness(97%) contrast(104%);
+  }
+  
+  img {
+    max-width: 80%;
+  }
+  
+  .container {
+    margin-right: 0%;
+    margin-left: 3%;
+  }
