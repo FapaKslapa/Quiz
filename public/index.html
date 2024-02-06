@@ -96,10 +96,10 @@
             <div class="modal-footer border-0">
               <button
                 type="submit"
-                class="btn btn-outline-success"
+                class="btn btn-outline-info"
                 id="inviaUser"
               >
-                Open second modal
+                Inizia
               </button>
             </div>
           </form>
@@ -117,7 +117,7 @@
       aria-hidden="true"
     >
       <div
-        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+        class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
       >
         <div class="modal-content">
           <div class="modal-header border-0">
@@ -132,12 +132,11 @@
             ></button>
           </div>
           <div class="modal-body" id="modalQuizBody">
-            <ul id="domande"></ul>
-          </div>
+          <ol id="domande" class="list-group list-group-numbered"></ol>          </div>
           <div class="modal-footer border-0">
             <div class="d-inline-flex p-1 rounded-3">
               <button class="btn btn-light d-inline-flex p-1 rounded-3" id="tempoRimasto" disabled></div>
-              <button type="button" class="btn btn-outline-success rounded-3">
+              <button type="button" id="inviaModulo" class="btn btn-outline-success rounded-3">
                 Invia modulo
               </button>
             </div>

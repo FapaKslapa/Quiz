@@ -2,13 +2,85 @@ const modalQuiz = new bootstrap.Modal("#modalQuiz");
 const modalName = new bootstrap.Modal("#modalName");
 const inviaUser = document.getElementById("inviaUser");
 const username = document.getElementById("username");
-let tempo = 0; // Inserisci il tempo in secondi
+let tempo = 0;
 let countdown;
+let id = [];
 const modalQuizBody = document.getElementById("modalQuizBody");
 const modalQuizTitle = document.getElementById("modalQuizTitle");
-const template = `<li>
-%DOMANDA
-</li>`;
+const tempoRimasto = document.getElementById("tempoRimasto");
+const inviaModulo = document.getElementById("inviaModulo");
+const template = `
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col fw-bold">%TITOLO</div>
+        <div class="col">
+        <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="Domanda%IDOMANDA" id="inlineRadio1" value="1">
+  <label class="form-check-label" for="inlineRadio1"><button class="btn  btn-outline-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1-%ID" aria-expanded="true">
+  Risposta 1
+</button></label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="Domanda%IDOMANDA" id="inlineRadio2" value="2">
+  <label class="form-check-label" for="inlineRadio2">
+  <button class="btn  btn-outline-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2-%ID" aria-expanded="true">
+  Risposta 2
+</button></label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="Domanda%IDOMANDA" id="inlineRadio3" value="3">
+  <label class="form-check-label" for="inlineRadio3"><button class="btn  btn-outline-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3-%ID" aria-expanded="true">
+  Risposta 3
+</button></label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="Domanda%IDOMANDA" id="inlineRadio4" value="4">
+  <label class="form-check-label" for="inlineRadio4"><button class="btn  btn-outline-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4-%ID" aria-expanded="true">
+  Risposta 4
+</button></label>
+</div>
+        </div>
+      </div>
+      <div class="row mt-5">
+      <div class="col">
+      <div style="min-height: 12rem;">
+      <div class="collapse show collapse-horizontal" id="collapse1-%ID">
+        <div class="card card-body" style="width: 12rem;">
+          %RISPOSTA1
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col">
+    <div style="min-height: 12rem;">
+      <div class="collapse show collapse-horizontal" id="collapse2-%ID">
+        <div class="card card-body" style="width: 12rem;">
+          %RISPOSTA2
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col">
+    <div style="min-height: 12rem;">
+      <div class="collapse show collapse-horizontal" id="collapse3-%ID">
+        <div class="card card-body" style="width: 12rem;">
+          %RISPOSTA3
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col">
+      <div style="min-height: 12rem;">
+        <div class="collapse show collapse-horizontal" id="collapse4-%ID">
+          <div class="card card-body" style="width: 12rem;">
+            %RISPOSTA4
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    </li>
+    `;
 inviaUser.onclick = () => {
   if (username.value) {
     modalName.hide();
@@ -18,20 +90,17 @@ inviaUser.onclick = () => {
       modalQuizBody.innerHTML = renderQuestion(data.questions);
       tempo = data.timer;
       countdown = setInterval(() => {
+        tempo--;
         if (tempo > 10) {
-          document.getElementById("tempoRimasto").innerHTML =
+          tempoRimasto.innerHTML =
             tempo + '<span class="material-symbols-rounded"> schedule </span>';
-          tempo--;
+        } else if (tempo === 0) {
+          clearInterval(countdown);
+          tempoRimasto.innerHTML = "Tempo esaurito!";
         } else if (tempo <= 10) {
-          document.getElementById("tempoRimasto").innerHTML =
+          tempoRimasto.innerHTML =
             tempo +
             '<span class="material-symbols-rounded"> schedule </span></p>';
-          tempo--;
-        }
-        if (tempo < 0) {
-          clearInterval(countdown);
-          document.getElementById("modalQuizTitle").innerHTML =
-            "Tempo esaurito!";
         }
       }, 1000);
     });
@@ -50,39 +119,93 @@ const getQuestion = () => {
 };
 
 function renderQuestion(question) {
-  let html = ``;
+  let html = "";
 
-  question.forEach((answer, index) => {
-    html += `
-    <li>
-      <div class="row">
-        <div class="col">%TITOLO</div>
-        <div class="col">
-        <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-  <label class="form-check-label" for="inlineRadio1"><button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-  Toggle width collapse
-</button></label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-  <label class="form-check-label" for="inlineRadio2">2</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-  <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
-</div>
-        </div>
-      </div>
-      <div style="min-height: 120px;">
-      <div class="collapse collapse-horizontal" id="collapseWidthExample">
-        <div class="card card-body" style="width: 300px;">
-          This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
-        </div>
-      </div>
-    </div>
-    </li>
-    `;
+  question.forEach((answer) => {
+    html += template
+      .replace("%TITOLO", answer.question)
+      .replace("%IDOMANDA", answer.id)
+      .replace("%IDOMANDA", answer.id)
+      .replace("%IDOMANDA", answer.id)
+      .replace("%IDOMANDA", answer.id)
+      .replace("%IDOMANDA", answer.id)
+      .replace("%IDOMANDA", answer.id)
+      .replace("%IDOMANDA", answer.id)
+      .replace("%IDOMANDA", answer.id)
+      .replace("%ID", answer.id)
+      .replace("%ID", answer.id)
+      .replace("%ID", answer.id)
+      .replace("%ID", answer.id)
+      .replace("%ID", answer.id)
+      .replace("%ID", answer.id)
+      .replace("%ID", answer.id)
+      .replace("%ID", answer.id)
+      .replace("%RISPOSTA1", answer.answers[0])
+      .replace("%RISPOSTA2", answer.answers[1])
+      .replace("%RISPOSTA3", answer.answers[2])
+      .replace("%RISPOSTA4", answer.answers[3])
+      .replace("%RISPOSTA1", answer.answers[0])
+      .replace("%RISPOSTA2", answer.answers[1])
+      .replace("%RISPOSTA3", answer.answers[2])
+      .replace("%RISPOSTA4", answer.answers[3]);
+    id.push(answer.id);
   });
+
   return html;
 }
+
+inviaModulo.onclick = () => {
+  let selezionati = [];
+  id.forEach((element) => {
+    let selezionato = document.querySelector(
+      `input[name="Domanda${element}"]:checked`,
+    );
+    if (selezionato !== null)
+      selezionati.push({
+        id: element,
+        value: selezionato.value,
+      });
+    else
+      selezionati.push({
+        id: element,
+        value: null,
+      });
+  });
+  inviaDomande(selezionati, "Stefano").then(() => {
+    getClassifica().then((data) => {
+      console.log(data);
+    });
+  });
+};
+
+const inviaDomande = (array, username) => {
+  return new Promise((resolve, reject) => {
+    fetch("/answer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        timestamp: new Date().getTime(),
+        username: username,
+        answers: array,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch((error) => {
+        reject("Error:", error);
+      });
+  });
+};
+
+const getClassifica = () => {
+  return new Promise((resolve, reject) => {
+    fetch("/scores")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        resolve(json);
+      });
+  });
+};

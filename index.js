@@ -51,13 +51,18 @@ app.post("/answer", (req, res) => {
       return;
     }
 
-    const correctAnswers = JSON.parse(data);
+    const correctAnswers = JSON.parse(data).rispsote;
     let totalScore = 0;
 
     for (let answer of answers) {
-      const correctAnswer = correctAnswers.find((a) => a.id === answer.id);
-      if (correctAnswer) {
-        totalScore += correctAnswer.points[answer.value] || 0;
+      if (answer !== null) {
+        console.log(correctAnswers);
+        const correctAnswer = correctAnswers.points.find(
+          (a) => a.id === answer.id,
+        );
+        if (correctAnswer) {
+          totalScore += correctAnswer.points[answer.value] || 0;
+        }
       }
     }
 
@@ -68,7 +73,6 @@ app.post("/answer", (req, res) => {
     } else {
       scores.push({ username, timestamp, rating: totalScore });
     }
-
     res.send(`Il punteggio totale di ${username} è ${totalScore}`);
   });
 });
