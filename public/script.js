@@ -9,6 +9,7 @@ const modalQuizBody = document.getElementById("modalQuizBody");
 const modalQuizTitle = document.getElementById("modalQuizTitle");
 const tempoRimasto = document.getElementById("tempoRimasto");
 const inviaModulo = document.getElementById("inviaModulo");
+const classifica = document.getElementById("classifica");
 const template = `
     <li class="list-group-item">
       <div class="row">
@@ -81,31 +82,16 @@ const template = `
     </div>
     </li>
     `;
-inviaUser.onclick = () => {
-  if (username.value) {
-    modalName.hide();
-    getQuestion().then((data) => {
-      modalQuiz.show();
-      modalQuizTitle.innerHTML = data.title;
-      modalQuizBody.innerHTML = renderQuestion(data.questions);
-      tempo = data.timer;
-      countdown = setInterval(() => {
-        tempo--;
-        if (tempo > 10) {
-          tempoRimasto.innerHTML =
-            tempo + '<span class="material-symbols-rounded"> schedule </span>';
-        } else if (tempo === 0) {
-          clearInterval(countdown);
-          tempoRimasto.innerHTML = "Tempo esaurito!";
-        } else if (tempo <= 10) {
-          tempoRimasto.innerHTML =
-            tempo +
-            '<span class="material-symbols-rounded"> schedule </span></p>';
-        }
-      }, 1000);
-    });
-  }
-};
+
+const templateClassifica = `
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">%NOME</div>
+        %TIME
+      </div>
+      <span class="badge bg-primary rounded-pill">%PUNTI</span>
+    </li>
+  `;
 
 const getQuestion = () => {
   return new Promise((resolve, reject) => {
@@ -117,8 +103,45 @@ const getQuestion = () => {
       });
   });
 };
-
-function renderQuestion(question) {
+const inviaDomande = (array, username) => {
+  return new Promise((resolve, reject) => {
+    fetch("/answer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        timestamp: new Date().getTime(),
+        username: username,
+        answers: array,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        resolve(data);
+      })
+      .catch((error) => {
+        reject("Error:", error);
+      });
+  });
+};
+const getClassifica = () => {
+  return new Promise((resolve, reject) => {
+    fetch("/scores")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        console.log("andato");
+        resolve(json);
+      })
+      .catch((e) => {
+        console.log(e);
+        reject(e);
+      });
+  });
+};
+const renderQuestion = (question) => {
   let html = "";
 
   question.forEach((answer) => {
@@ -152,8 +175,17 @@ function renderQuestion(question) {
   });
 
   return html;
-}
-
+};
+const renderClassifica = (classifica) => {
+  let html = "";
+  classifica.forEach((utente) => {
+    html += templateClassifica
+      .replace("%NOME", utente.username)
+      .replace("%PUNTI", utente.rating)
+      .replace("%TIME", utente.timestamp);
+  });
+  return html;
+};
 inviaModulo.onclick = () => {
   let selezionati = [];
   id.forEach((element) => {
@@ -171,41 +203,37 @@ inviaModulo.onclick = () => {
         value: null,
       });
   });
-  inviaDomande(selezionati, "Stefano").then(() => {
+  inviaDomande(selezionati, username.value).then((data) => {
+    console.log(data);
     getClassifica().then((data) => {
+      modalQuiz.hide();
       console.log(data);
+      classifica.innerHTML = renderClassifica(data);
     });
   });
 };
-
-const inviaDomande = (array, username) => {
-  return new Promise((resolve, reject) => {
-    fetch("/answer", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        timestamp: new Date().getTime(),
-        username: username,
-        answers: array,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => resolve(data))
-      .catch((error) => {
-        reject("Error:", error);
-      });
-  });
-};
-
-const getClassifica = () => {
-  return new Promise((resolve, reject) => {
-    fetch("/scores")
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        resolve(json);
-      });
-  });
+inviaUser.onclick = () => {
+  if (username.value) {
+    modalName.hide();
+    getQuestion().then((data) => {
+      modalQuiz.show();
+      modalQuizTitle.innerHTML = data.title;
+      modalQuizBody.innerHTML = renderQuestion(data.questions);
+      tempo = data.timer;
+      countdown = setInterval(() => {
+        tempo--;
+        if (tempo > 10) {
+          tempoRimasto.innerHTML =
+            tempo + '<span class="material-symbols-rounded"> schedule </span>';
+        } else if (tempo === 0) {
+          clearInterval(countdown);
+          tempoRimasto.innerHTML = "Tempo esaurito!";
+        } else if (tempo <= 10) {
+          tempoRimasto.innerHTML =
+            tempo +
+            '<span class="material-symbols-rounded"> schedule </span></p>';
+        }
+      }, 1000);
+    });
+  }
 };
