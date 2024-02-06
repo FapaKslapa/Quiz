@@ -51,19 +51,8 @@ app.post("/answer", (req, res) => {
       return;
     }
 
-    const correctAnswers = JSON.parse(data);
+    const correctAnswers = JSON.parse(data).rispsote;
     let totalScore = 0;
-
-    // Itera attraverso le risposte fornite
-    for (let i = 0; i < answers.length; i++) {
-      // Trova la domanda corrispondente nel file answer.json
-      const question = correctAnswers.find((q) => q.id === i + 1);
-
-      // Se la domanda esiste e la risposta è corretta, aggiungi il punteggio corrispondente
-      if (question && answers[i] !== null) {
-        totalScore += question.points[answers[i]];
-      }
-    }
 
     res.send(`Il punteggio totale di ${username} è ${totalScore}`);
   });
